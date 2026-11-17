@@ -3,5 +3,5 @@ minigrid==2.3.1
 matplotlib
 pygame
 # Install ALFWorld/TextWorld in their own interpreter when dependencies conflict.
-alfworld==0.4.2
-textworld
+alfworld==0.5.0
+textworld==1.7.0

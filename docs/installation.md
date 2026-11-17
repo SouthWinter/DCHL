@@ -56,3 +56,7 @@ python scripts/prepare_babyai.py
 The builder reconstructs 810 public training demonstrations and 90 evaluation tasks in the native environment, checking terminal success and goal ordering. It writes the fixed template, online records and TRAIN-only replay references. The historical Llama preparation fixed the template date to `01 Nov 2026`.
 
 The public download URLs use upstream dataset branches. `fetch_demonstrations.py` prints SHA-256 digests; retain them with your experiment. A changed upstream dataset needs an explicit new data version, not silent replacement of a comparison.
+
+## Optional GitHub CI
+
+`docs/ci-workflow.example.yml` is the tested CPU-check workflow template. It is not active: the publication credential has repository access but no `workflow` scope. An authorized maintainer can install it under `.github/workflows/tests.yml`. The local CPU tests remain available without GitHub Actions.
