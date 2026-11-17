@@ -1,0 +1,110 @@
+[
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "ALFWorld",
+    "method": "HSL",
+    "seed": 20260823,
+    "successes": 241,
+    "episodes": 274,
+    "success_rate": 87.95620437956204
+  },
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "ALFWorld",
+    "method": "DCHL",
+    "seed": 20260823,
+    "successes": 249,
+    "episodes": 274,
+    "success_rate": 90.87591240875912
+  },
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "PlanCraft",
+    "method": "HSL",
+    "seed": 43,
+    "successes": 355,
+    "episodes": 480,
+    "success_rate": 73.95833333333333
+  },
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "PlanCraft",
+    "method": "DCHL",
+    "seed": 43,
+    "successes": 373,
+    "episodes": 480,
+    "success_rate": 77.70833333333333
+  },
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "ALFWorld",
+    "method": "DynamixSFT",
+    "seed": 20260823,
+    "successes": 249,
+    "episodes": 274,
+    "success_rate": 90.87591240875912
+  },
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "ALFWorld",
+    "method": "Data Agent",
+    "seed": 20260823,
+    "successes": 231,
+    "episodes": 274,
+    "success_rate": 84.30656934306569
+  },
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "PlanCraft",
+    "method": "DynamixSFT",
+    "seed": 43,
+    "successes": 363,
+    "episodes": 480,
+    "success_rate": 75.625
+  },
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "PlanCraft",
+    "method": "Data Agent",
+    "seed": 43,
+    "successes": 351,
+    "episodes": 480,
+    "success_rate": 73.125
+  },
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "BabyAI",
+    "method": "HSL",
+    "seed": 43,
+    "successes": 75,
+    "episodes": 90,
+    "success_rate": 83.33333333333334
+  },
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "BabyAI",
+    "method": "DynamixSFT",
+    "seed": 43,
+    "successes": 82,
+    "episodes": 90,
+    "success_rate": 91.11111111111111
+  },
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "BabyAI",
+    "method": "Data Agent",
+    "seed": 43,
+    "successes": 81,
+    "episodes": 90,
+    "success_rate": 90.0
+  },
+  {
+    "model": "Llama-3.2-1B",
+    "dataset": "BabyAI",
+    "method": "DCHL",
+    "seed": 43,
+    "successes": 86,
+    "episodes": 90,
+    "success_rate": 95.55555555555556
+  }
+]

@@ -1,0 +1,335 @@
+diff --git a/verl/trainer/config/sft_trainer_engine.yaml b/verl/trainer/config/sft_trainer_engine.yaml
+index e385e88..e2cd271 100644
+--- a/verl/trainer/config/sft_trainer_engine.yaml
++++ b/verl/trainer/config/sft_trainer_engine.yaml
+@@ -15,6 +15,7 @@ defaults:
+ 
+ data:
+   train_batch_size: 256 # global batch size
++  shuffle: True
+   micro_batch_size_per_gpu: 4  # this is also val batch size
+   max_token_len_per_gpu: 8192
+   use_dynamic_bsz: True
+@@ -24,6 +25,7 @@ data:
+   val_max_samples: -1  # set to -1 to use full dataset
+   # Multi-turn settings
+   messages_key: messages  # Key for messages list in multi-turn mode
++  loss_weight_key: null
+   tools_key: tools  # Key for tools list in multi-turn mode
+   enable_thinking_key: enable_thinking  # Whether to enable thinking in multi-turn mode
+   enable_thinking_default: none         # The default value when enable_thinking_key is not present in the dataset
+diff --git a/verl/trainer/sft_trainer.py b/verl/trainer/sft_trainer.py
+index 1492469..c50e3d9 100644
+--- a/verl/trainer/sft_trainer.py
++++ b/verl/trainer/sft_trainer.py
+@@ -234,7 +234,12 @@ class SFTTrainer:
+         dp_size = self.engine.get_data_parallel_size()
+ 
+         self.train_sampler = DistributedSampler(
+-            self.train_dataset, shuffle=True, num_replicas=dp_size, rank=dp_rank, drop_last=True
++            self.train_dataset,
++            shuffle=bool(config.data.get("shuffle", True)),
++            num_replicas=dp_size,
++            rank=dp_rank,
++            drop_last=True,
++            seed=int(self.config.trainer.seed),
+         )
+ 
+         self.global_batch_size = config.data.train_batch_size
+@@ -429,7 +434,16 @@ class SFTTrainer:
+                     torch.distributed.barrier()
+ 
+                 if is_last_step or (self.save_freq > 0 and is_save_step):
+-                    aggressive_empty_cache(force_sync=True)
++                    skip_pre_checkpoint_cache = os.getenv("VERL_SKIP_PRE_CHECKPOINT_EMPTY_CACHE", "0") == "1"
++                    if skip_pre_checkpoint_cache:
++                        log_with_rank(
++                            f"Skipping pre-checkpoint CUDA cache synchronization at step {global_step}",
++                            logger=logger,
++                            rank=0,
++                            log_only_rank_0=True,
++                        )
++                    else:
++                        aggressive_empty_cache(force_sync=True)
+                     self.ckpt_handler.save_checkpoint(step=global_step)
+ 
+                 if is_last_step:
+diff --git a/verl/utils/attention_utils.py b/verl/utils/attention_utils.py
+index ae66e53..297ebde 100644
+--- a/verl/utils/attention_utils.py
++++ b/verl/utils/attention_utils.py
+@@ -14,6 +14,8 @@
+ 
+ from typing import Callable
+ 
++import torch
++
+ _index_first_axis, _pad_input, _rearrange, _unpad_input = None, None, None, None
+ 
+ 
+@@ -27,7 +29,29 @@ def _get_attention_functions() -> tuple[Callable, Callable, Callable, Callable]:
+     if is_torch_npu_available(check_device=False):
+         from verl.utils.npu_flash_attn_utils import index_first_axis, pad_input, rearrange, unpad_input
+     else:
+-        from flash_attn.bert_padding import index_first_axis, pad_input, rearrange, unpad_input
++        try:
++            from flash_attn.bert_padding import index_first_axis, pad_input, rearrange, unpad_input
++        except ModuleNotFoundError:
++            from einops import rearrange
++
++            def index_first_axis(input, indices):
++                return input.index_select(0, indices)
++
++            def unpad_input(hidden_states, attention_mask, unused_mask=None):
++                batch_size, sequence_length = attention_mask.shape
++                indices = attention_mask.reshape(-1).nonzero(as_tuple=False).flatten()
++                unpadded = hidden_states.reshape(
++                    batch_size * sequence_length, *hidden_states.shape[2:]
++                ).index_select(0, indices)
++                lengths = attention_mask.sum(dim=-1, dtype=torch.int32)
++                cumulative_lengths = torch.nn.functional.pad(torch.cumsum(lengths, dim=0), (1, 0))
++                return unpadded, indices, cumulative_lengths, int(lengths.max().item())
++
++            def pad_input(hidden_states, indices, batch, seqlen):
++                output = hidden_states.new_zeros((batch * seqlen, *hidden_states.shape[1:]))
++                return output.index_copy(0, indices, hidden_states).reshape(
++                    batch, seqlen, *hidden_states.shape[1:]
++                )
+ 
+     _index_first_axis, _pad_input, _rearrange, _unpad_input = index_first_axis, pad_input, rearrange, unpad_input
+ 
+diff --git a/verl/utils/checkpoint/checkpoint_manager.py b/verl/utils/checkpoint/checkpoint_manager.py
+index 9f48147..1543d94 100644
+--- a/verl/utils/checkpoint/checkpoint_manager.py
++++ b/verl/utils/checkpoint/checkpoint_manager.py
+@@ -149,6 +149,11 @@ class BaseCheckpointManager:
+         until the new save completes successfully (handled by register_checkpoint).
+         For max_ckpt_to_keep >= 2, we keep (max_ckpt_to_keep - 1) checkpoints before save.
+         """
++        overwrite_previous = os.environ.get("VES_CHECKPOINT_OVERWRITE_PREVIOUS", "0") == "1"
++        if max_ckpt_to_keep == 1 and overwrite_previous:
++            self.remove_previous_save_local_path(self.previous_saved_paths)
++            self.previous_saved_paths = []
++            return
+         if not (max_ckpt_to_keep and isinstance(max_ckpt_to_keep, int) and max_ckpt_to_keep > 1):
+             return
+         if len(self.previous_saved_paths) >= max_ckpt_to_keep:
+diff --git a/verl/utils/checkpoint/fsdp_checkpoint_manager.py b/verl/utils/checkpoint/fsdp_checkpoint_manager.py
+index 245a0ce..546f0e2 100644
+--- a/verl/utils/checkpoint/fsdp_checkpoint_manager.py
++++ b/verl/utils/checkpoint/fsdp_checkpoint_manager.py
+@@ -180,6 +180,8 @@ class FSDPCheckpointManager(BaseCheckpointManager):
+ 
+         # wait for everyone to load checkpoints
+         torch.distributed.barrier()
++        if self.rank == 0 and os.environ.get("VES_CHECKPOINT_OVERWRITE_PREVIOUS", "0") == "1":
++            self.previous_saved_paths = [local_path]
+ 
+     def save_checkpoint(self, local_path: str, hdfs_path: str = None, global_step: int = 0, max_ckpt_to_keep=None):
+         """
+@@ -301,7 +303,9 @@ class FSDPCheckpointManager(BaseCheckpointManager):
+         # wait for everyone to dump to local
+         torch.distributed.barrier()
+ 
+-        if self.should_save_hf_model:
++        # Opt-in export schedule; all resumable shards are still saved above.
++        hf_export_step = os.environ.get("VES_HF_EXPORT_STEP")
++        if self.should_save_hf_model and (hf_export_step is None or global_step == int(hf_export_step)):
+             # Only rank 0 will save hf model and,
+             # offload to cpu to save LLMs which may be too large to fit in one GPU
+             state_dict = get_fsdp_full_state_dict(self.model, offload_to_cpu=True, rank0_only=True)
+diff --git a/verl/utils/dataset/multiturn_sft_dataset.py b/verl/utils/dataset/multiturn_sft_dataset.py
+index 846e84c..8e6bc73 100644
+--- a/verl/utils/dataset/multiturn_sft_dataset.py
++++ b/verl/utils/dataset/multiturn_sft_dataset.py
+@@ -16,6 +16,7 @@
+ Multi-turn SFT dataset that supports training on conversation data with multiple turns
+ """
+ 
++import copy
+ import logging
+ import os
+ import re
+@@ -42,6 +43,16 @@ logger = logging.getLogger(__file__)
+ logger.setLevel(os.getenv("VERL_LOGGING_LEVEL", "WARN"))
+ 
+ 
++def apply_loss_weight(loss_mask: torch.Tensor, weight: Any) -> torch.Tensor:
++    """Apply a positive per-record SFT weight to every supervised token."""
++    if weight is None:
++        return loss_mask
++    scalar = float(weight)
++    if not np.isfinite(scalar) or scalar <= 0:
++        raise ValueError(f"loss weight must be finite and positive, got {weight!r}")
++    return loss_mask.to(torch.float32) * scalar
++
++
+ def once(func):
+     """Decorator to ensure a function runs only once. Subsequent calls do nothing."""
+ 
+@@ -108,6 +119,8 @@ class MultiTurnSFTDataset(Dataset):
+         self.tools_key = config.get("tools_key", "tools")
+         self.enable_thinking_key = config.get("enable_thinking_key", "enable_thinking")
+         self.enable_thinking_default = config.get("enable_thinking_default", None)
++        self.loss_on_this_turn_key = config.get("loss_on_this_turn_key", "loss_on_this_turn")
++        self.loss_weight_key = config.get("loss_weight_key", None)
+         self.apply_chat_template_kwargs = config.get("apply_chat_template_kwargs", {})
+         self.shuffle = config.get("shuffle", False)
+         self.seed = config.get("seed")
+@@ -204,6 +217,8 @@ class MultiTurnSFTDataset(Dataset):
+             Tuple of (input_ids, loss_mask, attention_mask, dict[str, torch.Tensor])
+         """
+         processor = self.processor if self.processor is not None else self.tokenizer
++        message = copy.deepcopy(message)
++        loss_on_this_turn = bool(message.pop(self.loss_on_this_turn_key, True))
+         apply_chat_template_kwargs = {**self.apply_chat_template_kwargs}
+         if enable_thinking is not None:
+             apply_chat_template_kwargs["enable_thinking"] = enable_thinking
+@@ -228,7 +243,7 @@ class MultiTurnSFTDataset(Dataset):
+             input_ids = input_ids[len(self.system_prompt) :]
+             attention_mask = attention_mask[len(self.system_prompt) :]
+ 
+-        if message["role"] == "assistant":
++        if message["role"] == "assistant" and loss_on_this_turn:
+             loss_mask = torch.ones_like(attention_mask)
+             # mask out generation prompt if assistant message
+             loss_mask[: len(self.generation_prompt)] = 0
+@@ -285,8 +300,28 @@ class MultiTurnSFTDataset(Dataset):
+         assert video_offset == len(videos), f"video_offset {video_offset} != len(videos) {len(videos)}"
+         return messages
+ 
++    def _row_dict(self, item: int) -> dict[str, Any]:
++        """Build the fields consumed by ``__getitem__`` without materializing a full Arrow row.
++
++        Pandas' Arrow backend can fail in ``DataFrame.iloc[item].to_dict()``
++        when a row contains deeply nested tool JSON schemas. Messages and tools
++        are already converted to ordinary Python containers during dataset
++        initialization, so only media fields need to be read from the frame.
++        """
++        row_dict: dict[str, Any] = {
++            self.messages_key: copy.deepcopy(self.messages[item]),
++        }
++        if self.loss_weight_key is not None:
++            if self.loss_weight_key not in self.dataframe.columns:
++                raise KeyError(f"configured loss weight column is missing: {self.loss_weight_key}")
++            row_dict[self.loss_weight_key] = self.dataframe[self.loss_weight_key].iloc[item]
++        for key in (self.image_key, self.video_key):
++            if key in self.dataframe.columns:
++                row_dict[key] = convert_nested_value_to_list_recursive(self.dataframe[key].iloc[item])
++        return row_dict
++
+     def __getitem__(self, item):
+-        row_dict: dict = self.dataframe.iloc[item].to_dict()
++        row_dict = self._row_dict(item)
+         messages = self._build_messages(row_dict)
+         tools = self.tools[item] if self.tools is not None else None
+         enable_thinking = (
+@@ -311,6 +346,8 @@ class MultiTurnSFTDataset(Dataset):
+ 
+         input_ids = torch.cat(input_ids, dim=0)
+         loss_mask = torch.cat(loss_mask, dim=0)
++        if self.loss_weight_key is not None:
++            loss_mask = apply_loss_weight(loss_mask, row_dict[self.loss_weight_key])
+         attention_mask = torch.cat(attention_mask, dim=0)
+         assert input_ids.shape == loss_mask.shape == attention_mask.shape, (
+             f"Shape mismatch: {input_ids.shape}, {loss_mask.shape}, {attention_mask.shape}"
+diff --git a/verl/workers/config/model.py b/verl/workers/config/model.py
+index 1a11cfa..5beb1bc 100644
+--- a/verl/workers/config/model.py
++++ b/verl/workers/config/model.py
+@@ -113,6 +113,7 @@ class HFModelConfig(BaseConfig):
+ 
+     enable_gradient_checkpointing: bool = True
+     enable_activation_offload: bool = False
++    enable_tied_meta_init: bool = False
+ 
+     use_remove_padding: bool = True
+ 
+diff --git a/verl/workers/engine/fsdp/transformer_impl.py b/verl/workers/engine/fsdp/transformer_impl.py
+index c7974ce..231773a 100644
+--- a/verl/workers/engine/fsdp/transformer_impl.py
++++ b/verl/workers/engine/fsdp/transformer_impl.py
+@@ -50,6 +50,7 @@ from verl.utils.fsdp_utils import (
+     fsdp_version,
+     get_fsdp_wrap_policy,
+     get_init_weight_context_manager,
++    get_shard_placement_fn,
+     init_fn,
+     load_fsdp_model_to_gpu,
+     load_fsdp_optimizer,
+@@ -224,21 +225,34 @@ class FSDPEngine(BaseEngine):
+ 
+         torch_dtype = PrecisionType.to_dtype(torch_dtype)
+ 
+-        init_context = get_init_weight_context_manager(
+-            use_meta_tensor=not self.model_config.hf_config.tie_word_embeddings, mesh=self.device_mesh
+-        )
++        enable_tied_meta_init = bool(self.model_config.enable_tied_meta_init)
++        if enable_tied_meta_init and self.engine_config.strategy != "fsdp2":
++            raise ValueError("enable_tied_meta_init requires engine.strategy=fsdp2")
++
++        # A tied output head historically disabled meta initialization.  The
++        # explicit FSDP2 path keeps a single full host copy on rank 0 and lets
++        # the sharded state-dict broadcast initialize all remaining ranks.
++        use_meta_tensor = not self.model_config.hf_config.tie_word_embeddings or enable_tied_meta_init
++        init_context = get_init_weight_context_manager(use_meta_tensor=use_meta_tensor, mesh=self.device_mesh)
+ 
+         with init_context(), warnings.catch_warnings():
+             warnings.simplefilter("ignore")
+ 
+             auto_class = get_hf_auto_model_class(hf_config=self.model_config.hf_config)
+ 
+-            module = auto_class.from_pretrained(
+-                pretrained_model_name_or_path=self.model_config.local_path,
+-                torch_dtype=torch_dtype,
+-                config=self.model_config.hf_config,
+-                trust_remote_code=self.model_config.trust_remote_code,
+-            )
++            if enable_tied_meta_init and self.rank != 0:
++                module = auto_class.from_config(
++                    self.model_config.hf_config,
++                    torch_dtype=torch_dtype,
++                    trust_remote_code=self.model_config.trust_remote_code,
++                )
++            else:
++                module = auto_class.from_pretrained(
++                    pretrained_model_name_or_path=self.model_config.local_path,
++                    torch_dtype=torch_dtype,
++                    config=self.model_config.hf_config,
++                    trust_remote_code=self.model_config.trust_remote_code,
++                )
+ 
+             use_liger = self.model_config.use_liger
+             # Apply Liger kernel to the model if use_liger is set to True
+@@ -266,6 +280,13 @@ class FSDPEngine(BaseEngine):
+ 
+             if self.model_config.enable_gradient_checkpointing:
+                 module.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
++
++        # init_empty_weights patches parameter registration, so restore the
++        # checkpoint-declared embedding alias after leaving that context.
++        if enable_tied_meta_init:
++            module.tie_weights()
++            if module.get_input_embeddings().weight is not module.get_output_embeddings().weight:
++                raise RuntimeError("tied-meta initialization did not restore the embedding alias")
+         return module
+ 
+     def _build_lora_module(self, module):
+@@ -375,10 +396,16 @@ class FSDPEngine(BaseEngine):
+                 "mp_policy": mp_policy,
+                 "offload_policy": offload_policy,
+                 "reshard_after_forward": self.engine_config.reshard_after_forward,
++                "shard_placement_fn": get_shard_placement_fn(fsdp_size=self.device_mesh.shape[-1]),
+             }
+-            full_state = module.state_dict()
++            enable_tied_meta_init = bool(self.model_config.enable_tied_meta_init)
++            full_state = module.state_dict() if not enable_tied_meta_init or self.rank == 0 else {}
+             apply_fsdp2(module, fsdp_kwargs, self.engine_config)
+             fsdp2_load_full_state_dict(module, full_state, fsdp_mesh, offload_policy)
++            if enable_tied_meta_init and (
++                module.get_input_embeddings().weight is not module.get_output_embeddings().weight
++            ):
++                raise RuntimeError("FSDP2 initialization broke the tied embedding alias")
+         else:
+             raise NotImplementedError(f"Unknown strategy {self.engine_config.strategy}")
+ 

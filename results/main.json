@@ -1,0 +1,242 @@
+[
+  {
+    "model": "llama-1b",
+    "dataset": "alfworld",
+    "method": "sft",
+    "successes": 200,
+    "episodes": 274,
+    "success_rate": 72.99270072992701
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "alfworld",
+    "method": "hsl",
+    "successes": 241,
+    "episodes": 274,
+    "success_rate": 87.95620437956204
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "alfworld",
+    "method": "dynamixsft",
+    "successes": 243,
+    "episodes": 274,
+    "success_rate": 88.68613138686132
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "alfworld",
+    "method": "data_agent",
+    "successes": 235,
+    "episodes": 274,
+    "success_rate": 85.76642335766424
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "alfworld",
+    "method": "dchl",
+    "successes": 251,
+    "episodes": 274,
+    "success_rate": 91.60583941605839
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "plancraft",
+    "method": "sft",
+    "successes": 313,
+    "episodes": 480,
+    "success_rate": 65.20833333333333
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "plancraft",
+    "method": "hsl",
+    "successes": 360,
+    "episodes": 480,
+    "success_rate": 75.0
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "plancraft",
+    "method": "dynamixsft",
+    "successes": 360,
+    "episodes": 480,
+    "success_rate": 75.0
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "plancraft",
+    "method": "data_agent",
+    "successes": 363,
+    "episodes": 480,
+    "success_rate": 75.625
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "plancraft",
+    "method": "dchl",
+    "successes": 374,
+    "episodes": 480,
+    "success_rate": 77.91666666666667
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "babyai",
+    "method": "sft",
+    "successes": 72,
+    "episodes": 90,
+    "success_rate": 80.0
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "babyai",
+    "method": "hsl",
+    "successes": 68,
+    "episodes": 90,
+    "success_rate": 75.55555555555556
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "babyai",
+    "method": "dynamixsft",
+    "successes": 77,
+    "episodes": 90,
+    "success_rate": 85.55555555555556
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "babyai",
+    "method": "data_agent",
+    "successes": 74,
+    "episodes": 90,
+    "success_rate": 82.22222222222223
+  },
+  {
+    "model": "llama-1b",
+    "dataset": "babyai",
+    "method": "dchl",
+    "successes": 76,
+    "episodes": 90,
+    "success_rate": 84.44444444444444
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "alfworld",
+    "method": "sft",
+    "successes": 205,
+    "episodes": 274,
+    "success_rate": 74.81751824817518
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "alfworld",
+    "method": "hsl",
+    "successes": 244,
+    "episodes": 274,
+    "success_rate": 89.05109489051095
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "alfworld",
+    "method": "dynamixsft",
+    "successes": 255,
+    "episodes": 274,
+    "success_rate": 93.06569343065694
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "alfworld",
+    "method": "data_agent",
+    "successes": 252,
+    "episodes": 274,
+    "success_rate": 91.97080291970804
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "alfworld",
+    "method": "dchl",
+    "successes": 255,
+    "episodes": 274,
+    "success_rate": 93.06569343065694
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "plancraft",
+    "method": "sft",
+    "successes": 426,
+    "episodes": 480,
+    "success_rate": 88.75
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "plancraft",
+    "method": "hsl",
+    "successes": 429,
+    "episodes": 480,
+    "success_rate": 89.375
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "plancraft",
+    "method": "dynamixsft",
+    "successes": 415,
+    "episodes": 480,
+    "success_rate": 86.45833333333333
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "plancraft",
+    "method": "data_agent",
+    "successes": 420,
+    "episodes": 480,
+    "success_rate": 87.5
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "plancraft",
+    "method": "dchl",
+    "successes": 434,
+    "episodes": 480,
+    "success_rate": 90.41666666666667
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "babyai",
+    "method": "sft",
+    "successes": 74,
+    "episodes": 90,
+    "success_rate": 82.22222222222223
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "babyai",
+    "method": "hsl",
+    "successes": 77,
+    "episodes": 90,
+    "success_rate": 85.55555555555556
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "babyai",
+    "method": "dynamixsft",
+    "successes": 78,
+    "episodes": 90,
+    "success_rate": 86.66666666666667
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "babyai",
+    "method": "data_agent",
+    "successes": 78,
+    "episodes": 90,
+    "success_rate": 86.66666666666667
+  },
+  {
+    "model": "qwen-4b",
+    "dataset": "babyai",
+    "method": "dchl",
+    "successes": 82,
+    "episodes": 90,
+    "success_rate": 91.11111111111111
+  }
+]

@@ -1,0 +1,472 @@
+[
+  {
+    "path": "scripts/agent_data_agent.py",
+    "research_sha256": "92113e22d1d117d6a2961adfb833e7bb3ebcddbfdb012c7253043540742f6942",
+    "release_sha256": "92113e22d1d117d6a2961adfb833e7bb3ebcddbfdb012c7253043540742f6942"
+  },
+  {
+    "path": "scripts/agent_dynamix_transfer.py",
+    "research_sha256": "ab0851d9b38a45d9e493210a6e7e66c4b29bc0f20c064a6dde68eda74a002eda",
+    "release_sha256": "ab0851d9b38a45d9e493210a6e7e66c4b29bc0f20c064a6dde68eda74a002eda"
+  },
+  {
+    "path": "scripts/agent_probe_state.py",
+    "research_sha256": "3b57b0fe7100c64f17312759a4045a012d7ddb84e7ce80513158b2314a969e93",
+    "release_sha256": "3b57b0fe7100c64f17312759a4045a012d7ddb84e7ce80513158b2314a969e93"
+  },
+  {
+    "path": "scripts/alfworld_acquisition_correction.py",
+    "research_sha256": "901d8dcd8553941e42e1a9139ddeae2b28100183f83f6dd5643011ef05858522",
+    "release_sha256": "901d8dcd8553941e42e1a9139ddeae2b28100183f83f6dd5643011ef05858522"
+  },
+  {
+    "path": "scripts/alfworld_action_contract.py",
+    "research_sha256": "0edc274573a89a27568d7b8e3d3bd3b8afad6884213f148630ae03db947b4cdf",
+    "release_sha256": "0edc274573a89a27568d7b8e3d3bd3b8afad6884213f148630ae03db947b4cdf"
+  },
+  {
+    "path": "scripts/alfworld_batch_selection.py",
+    "research_sha256": "c89d3238bf1d7470dbc99ac36542bd3ff5f25f99e04023ee91b284b26316c2a7",
+    "release_sha256": "c89d3238bf1d7470dbc99ac36542bd3ff5f25f99e04023ee91b284b26316c2a7"
+  },
+  {
+    "path": "scripts/alfworld_bounded_hsl.py",
+    "research_sha256": "6b753216ba54ca8edac56572ab9af642c44da600c2c63494bbce70a7935482c1",
+    "release_sha256": "6b753216ba54ca8edac56572ab9af642c44da600c2c63494bbce70a7935482c1"
+  },
+  {
+    "path": "scripts/alfworld_budget_restart.py",
+    "research_sha256": "a45f7c7fc8d6f1c1a8bcf53f2684e0f61bc033e1179ed4fd7dcf0ea10e9b5b18",
+    "release_sha256": "a45f7c7fc8d6f1c1a8bcf53f2684e0f61bc033e1179ed4fd7dcf0ea10e9b5b18"
+  },
+  {
+    "path": "scripts/alfworld_continuation_compression.py",
+    "research_sha256": "be5fe73008d6881ee9aa101622ed1880450cdb0afda4005118acf766b04cbf6d",
+    "release_sha256": "be5fe73008d6881ee9aa101622ed1880450cdb0afda4005118acf766b04cbf6d"
+  },
+  {
+    "path": "scripts/alfworld_cost_screened_labels.py",
+    "research_sha256": "13457ecdbde5eb013e83409e1cef6a84a255fbbbb7b1c04401d05548b4a68d63",
+    "release_sha256": "13457ecdbde5eb013e83409e1cef6a84a255fbbbb7b1c04401d05548b4a68d63"
+  },
+  {
+    "path": "scripts/alfworld_cycle_resample.py",
+    "research_sha256": "3a41f8e97e579dbb966d3713869d06324cf4ee1e59e51848c4757c118236c240",
+    "release_sha256": "3a41f8e97e579dbb966d3713869d06324cf4ee1e59e51848c4757c118236c240"
+  },
+  {
+    "path": "scripts/alfworld_cycle_training_context.py",
+    "research_sha256": "da5b4c57afd2785fd599558d8c0302822cb229644562eb8618189242b38107fa",
+    "release_sha256": "da5b4c57afd2785fd599558d8c0302822cb229644562eb8618189242b38107fa"
+  },
+  {
+    "path": "scripts/alfworld_data_schedule.py",
+    "research_sha256": "0b861695088b18041f4ee6368d4325b20571ee6320d26a20e780c65e2d5420c0",
+    "release_sha256": "0b861695088b18041f4ee6368d4325b20571ee6320d26a20e780c65e2d5420c0"
+  },
+  {
+    "path": "scripts/alfworld_decision_coverage.py",
+    "research_sha256": "b44155aed0eb07eeff2e84c662a524ff81003059d28da187a512cb81f4ffe66e",
+    "release_sha256": "b44155aed0eb07eeff2e84c662a524ff81003059d28da187a512cb81f4ffe66e"
+  },
+  {
+    "path": "scripts/alfworld_dialogue_hsl.py",
+    "research_sha256": "9e68c4c1d4fb8bf4f9914e5f773a484c7ea80489ab557717b39c23cd10a770f5",
+    "release_sha256": "9e68c4c1d4fb8bf4f9914e5f773a484c7ea80489ab557717b39c23cd10a770f5"
+  },
+  {
+    "path": "scripts/alfworld_dynamixsft.py",
+    "research_sha256": "10e1382035dece95f8232c9cefe2be9006a4f96c9206ae4e69e1bae56dc2f411",
+    "release_sha256": "10e1382035dece95f8232c9cefe2be9006a4f96c9206ae4e69e1bae56dc2f411"
+  },
+  {
+    "path": "scripts/alfworld_error_recovery.py",
+    "research_sha256": "1168e7324464b5420cbcf8c3893d83952b63aaa8cb1d6265cc80094f6c8e26ed",
+    "release_sha256": "1168e7324464b5420cbcf8c3893d83952b63aaa8cb1d6265cc80094f6c8e26ed"
+  },
+  {
+    "path": "scripts/alfworld_evidence_sampling.py",
+    "research_sha256": "5e51e18d109da2317033ffef2ca7fb2f1fd26af0c12e07adcf2450f345473c34",
+    "release_sha256": "10ac89eb22126be5b02a48d6979ddafe5874a00808a837b54ea6ec210555b86d"
+  },
+  {
+    "path": "scripts/alfworld_execution_evidence.py",
+    "research_sha256": "5761bea34f9baf09df2174f7c0d151b25887bcde015b42dd2d4bc141b83933e2",
+    "release_sha256": "5761bea34f9baf09df2174f7c0d151b25887bcde015b42dd2d4bc141b83933e2"
+  },
+  {
+    "path": "scripts/alfworld_expanded_recovery.py",
+    "research_sha256": "8cb0ff489e8df2edb4c071befda90008307f23d5fa335eb20e2939cad2c4ff16",
+    "release_sha256": "8cb0ff489e8df2edb4c071befda90008307f23d5fa335eb20e2939cad2c4ff16"
+  },
+  {
+    "path": "scripts/alfworld_goal_operation_correction.py",
+    "research_sha256": "0a71a6a1e4898583f0e1af0f1546356038cce720f455fb978c88f0f0b54c76f6",
+    "release_sha256": "0a71a6a1e4898583f0e1af0f1546356038cce720f455fb978c88f0f0b54c76f6"
+  },
+  {
+    "path": "scripts/alfworld_goal_opportunity.py",
+    "research_sha256": "f9f5a6409a09d2f2548cff231776a037edb08658f9b962d457b5883ef6b398c7",
+    "release_sha256": "f9f5a6409a09d2f2548cff231776a037edb08658f9b962d457b5883ef6b398c7"
+  },
+  {
+    "path": "scripts/alfworld_goal_value_loop.py",
+    "research_sha256": "cde7a3d4ab93aa4d1ef88b66d43f52578497cfabd0eb396177518a2b53925bee",
+    "release_sha256": "cde7a3d4ab93aa4d1ef88b66d43f52578497cfabd0eb396177518a2b53925bee"
+  },
+  {
+    "path": "scripts/alfworld_hindsight.py",
+    "research_sha256": "dbcc5a20256bd455fdf1694e2b524fa29a420fdd686e3f8220432fb5dd2a889e",
+    "release_sha256": "dbcc5a20256bd455fdf1694e2b524fa29a420fdd686e3f8220432fb5dd2a889e"
+  },
+  {
+    "path": "scripts/alfworld_hsl_batch.py",
+    "research_sha256": "22d2dca7d74f75ff0c5aecf37213539ca82200feebc21f4024e066e14af44a82",
+    "release_sha256": "22d2dca7d74f75ff0c5aecf37213539ca82200feebc21f4024e066e14af44a82"
+  },
+  {
+    "path": "scripts/alfworld_hsl_buffer.py",
+    "research_sha256": "39e3e982b6a098a044fb54251bce8e904166333537beeb515dee06edbc5cd268",
+    "release_sha256": "39e3e982b6a098a044fb54251bce8e904166333537beeb515dee06edbc5cd268"
+  },
+  {
+    "path": "scripts/alfworld_hsl_credit.py",
+    "research_sha256": "21bad81512b46b698e5dd6aa4445a03d097e53df262c1efaa22264b2186f2f8d",
+    "release_sha256": "21bad81512b46b698e5dd6aa4445a03d097e53df262c1efaa22264b2186f2f8d"
+  },
+  {
+    "path": "scripts/alfworld_hsl_loss.py",
+    "research_sha256": "f5846e8ae85cf9ba744f05622d01396eae4e2ac2d786c0665b22fbaf8be2d297",
+    "release_sha256": "f5846e8ae85cf9ba744f05622d01396eae4e2ac2d786c0665b22fbaf8be2d297"
+  },
+  {
+    "path": "scripts/alfworld_hsl_paired_feedback.py",
+    "research_sha256": "b195a1aefa92b90d4639ba884b2eaa01c1ceffe1ce53a205275374b322837e31",
+    "release_sha256": "b195a1aefa92b90d4639ba884b2eaa01c1ceffe1ce53a205275374b322837e31"
+  },
+  {
+    "path": "scripts/alfworld_hsl_plus_recovery.py",
+    "research_sha256": "bff18b1ef1c04dc08ff8304900f0f04f3864e4d23368b9af91520517a7640652",
+    "release_sha256": "bff18b1ef1c04dc08ff8304900f0f04f3864e4d23368b9af91520517a7640652"
+  },
+  {
+    "path": "scripts/alfworld_hsl_weight_sync.py",
+    "research_sha256": "55222e0e5409ff04d2d3a3d1bab894a8f5f230487e9ba5b6afba4206f3c6b4e3",
+    "release_sha256": "55222e0e5409ff04d2d3a3d1bab894a8f5f230487e9ba5b6afba4206f3c6b4e3"
+  },
+  {
+    "path": "scripts/alfworld_inline_correction.py",
+    "research_sha256": "617b2f7f3547780ddc24c30129b0f844e83100de4b9006f63f57e61f57b90c4b",
+    "release_sha256": "617b2f7f3547780ddc24c30129b0f844e83100de4b9006f63f57e61f57b90c4b"
+  },
+  {
+    "path": "scripts/alfworld_odm.py",
+    "research_sha256": "3b6b6dfdf4c012bb42cbf9de842700f42a67b0721567239bc6408a0aa81c7f1e",
+    "release_sha256": "3b6b6dfdf4c012bb42cbf9de842700f42a67b0721567239bc6408a0aa81c7f1e"
+  },
+  {
+    "path": "scripts/alfworld_odm_coverage.py",
+    "research_sha256": "ace4cae4964a6ffe766192057b1ebbcecabb6f55709d1f11a9bd661ae6d4aa8d",
+    "release_sha256": "ace4cae4964a6ffe766192057b1ebbcecabb6f55709d1f11a9bd661ae6d4aa8d"
+  },
+  {
+    "path": "scripts/alfworld_original_request_replay.py",
+    "research_sha256": "84b2d4d386b8a52a32a66496fafae068c4145084e7faa6ef612aed6f1c2b0266",
+    "release_sha256": "84b2d4d386b8a52a32a66496fafae068c4145084e7faa6ef612aed6f1c2b0266"
+  },
+  {
+    "path": "scripts/alfworld_public_correction.py",
+    "research_sha256": "bcdd8393acdcd9aea3cf1a9c023b71b5b583e7df5759b1e3cc3acf442dc56e55",
+    "release_sha256": "bcdd8393acdcd9aea3cf1a9c023b71b5b583e7df5759b1e3cc3acf442dc56e55"
+  },
+  {
+    "path": "scripts/alfworld_recovery_compression.py",
+    "research_sha256": "890bfc03ed2e0947edf731a1755cea19af5d5bcac7540cb46b47144ad07de49d",
+    "release_sha256": "890bfc03ed2e0947edf731a1755cea19af5d5bcac7540cb46b47144ad07de49d"
+  },
+  {
+    "path": "scripts/alfworld_replay_relevance.py",
+    "research_sha256": "4664d88b8288c0d312c44f3a91f04d8e3fcf965ac0b487f9198afc0e2b235a98",
+    "release_sha256": "4664d88b8288c0d312c44f3a91f04d8e3fcf965ac0b487f9198afc0e2b235a98"
+  },
+  {
+    "path": "scripts/alfworld_soft_rehearsal.py",
+    "research_sha256": "d1ddb92551d29290e0c888ac524af8c3d6db061a5e998ab76ada0509846b91fa",
+    "release_sha256": "d1ddb92551d29290e0c888ac524af8c3d6db061a5e998ab76ada0509846b91fa"
+  },
+  {
+    "path": "scripts/alfworld_stable_evidence.py",
+    "research_sha256": "eb3859e871500a4f9a169f915ae7c89b06c15ca1aeede30eb3be90ad387eebaa",
+    "release_sha256": "eb3859e871500a4f9a169f915ae7c89b06c15ca1aeede30eb3be90ad387eebaa"
+  },
+  {
+    "path": "scripts/alfworld_verified_recovery.py",
+    "research_sha256": "d752ecfb8e05fe0640912d355fe99982003b501c8b48f105634dd25fac541bdb",
+    "release_sha256": "d752ecfb8e05fe0640912d355fe99982003b501c8b48f105634dd25fac541bdb"
+  },
+  {
+    "path": "scripts/audit_alfworld_expert_observability.py",
+    "research_sha256": "c4b8a6f62c9685dcf57e6b71fbdc9c229704a8722c659cf0536933ee0cc68e18",
+    "release_sha256": "c4b8a6f62c9685dcf57e6b71fbdc9c229704a8722c659cf0536933ee0cc68e18"
+  },
+  {
+    "path": "scripts/babyai_adapter.py",
+    "research_sha256": "ba69d0a5457690f3699e8b10efe16a58ecdfc4647cc88d3609e32e9cf72d5983",
+    "release_sha256": "ba69d0a5457690f3699e8b10efe16a58ecdfc4647cc88d3609e32e9cf72d5983"
+  },
+  {
+    "path": "scripts/build_plancraft_text_data.py",
+    "research_sha256": "a9d95ca07fe77247e48a4de77ca6bebc47ab52239a65f059964427aa87981aa4",
+    "release_sha256": "4b01b317f1537e5973d74ff5f7f3d1a2b330978e1865271feb512fbfcc67433e"
+  },
+  {
+    "path": "scripts/collect_alfworld_continuation_compression.py",
+    "research_sha256": "6ff6f17d3172afb85e4f8be9fb649df5a83c0b843577e58e4afd4d48ebca2e05",
+    "release_sha256": "6ff6f17d3172afb85e4f8be9fb649df5a83c0b843577e58e4afd4d48ebca2e05"
+  },
+  {
+    "path": "scripts/collect_alfworld_takeover_frontier.py",
+    "research_sha256": "48d0569c5a312ae7ca11d1caaa3b48c22d42dc80f09787469dd09d864e652c8e",
+    "release_sha256": "48d0569c5a312ae7ca11d1caaa3b48c22d42dc80f09787469dd09d864e652c8e"
+  },
+  {
+    "path": "scripts/collect_alfworld_value_calibration.py",
+    "research_sha256": "9ad691301b826135f3cbb7fb9575d7dfccc56ab8c459a0eb88b4913221d62a2c",
+    "release_sha256": "9ad691301b826135f3cbb7fb9575d7dfccc56ab8c459a0eb88b4913221d62a2c"
+  },
+  {
+    "path": "scripts/collect_alfworld_verified_recovery.py",
+    "research_sha256": "eab51ebbd29b532119110715b538d60bd166d81c46c9179e433e99e5461e9fb9",
+    "release_sha256": "eab51ebbd29b532119110715b538d60bd166d81c46c9179e433e99e5461e9fb9"
+  },
+  {
+    "path": "scripts/dchl_dataset_support.py",
+    "research_sha256": "1ed8b468475911bbf882e04c2579706fbfe120a441c8ddfcd09a286d9b021486",
+    "release_sha256": "1ed8b468475911bbf882e04c2579706fbfe120a441c8ddfcd09a286d9b021486"
+  },
+  {
+    "path": "scripts/evaluate_alfworld_eto_dialogue.py",
+    "research_sha256": "16236e72546f1456b603624fe52185d5a5adc486b680288f90397c7a321587c9",
+    "release_sha256": "3732bc38d855955882b572d7d35ba76e6e2980578410d737b17ccecc53aa4a55"
+  },
+  {
+    "path": "scripts/evaluate_babyai.py",
+    "research_sha256": "3c79661e9e259f51f419801640d550737760c0d61e682a1a7b947e78ca5bb376",
+    "release_sha256": "3c79661e9e259f51f419801640d550737760c0d61e682a1a7b947e78ca5bb376"
+  },
+  {
+    "path": "scripts/evaluate_plancraft_text.py",
+    "research_sha256": "15d1e1fe06885bd9e4fc94855ea2fa0d4ef6b54ca993ccb91e379331988d4989",
+    "release_sha256": "770eb6de5e875dd38e7d944b533298391aa00eaa88fa355582d0238a9b7da2c1"
+  },
+  {
+    "path": "scripts/evaluate_textcraft.py",
+    "research_sha256": "10b2ad799f61aa7d5cf4496b21c6c897a864b2e0e40cd3de63ce2fd1888d281d",
+    "release_sha256": "10b2ad799f61aa7d5cf4496b21c6c897a864b2e0e40cd3de63ce2fd1888d281d"
+  },
+  {
+    "path": "scripts/plancraft_adapter.py",
+    "research_sha256": "45cb5a4c09954427825ad867ee5b836cde427cf6cb2862f9d9c4a1ab531cd946",
+    "release_sha256": "45cb5a4c09954427825ad867ee5b836cde427cf6cb2862f9d9c4a1ab531cd946"
+  },
+  {
+    "path": "scripts/plancraft_aligned_reference.py",
+    "research_sha256": "885983df464f587749cd09e029c84f038df093155e5d5f9cfe836b9a918d53d7",
+    "release_sha256": "885983df464f587749cd09e029c84f038df093155e5d5f9cfe836b9a918d53d7"
+  },
+  {
+    "path": "scripts/plancraft_execution_structure.py",
+    "research_sha256": "dd94a3765399e88ac54075103ca3b22aeea72f8ba9089e728318e43679473659",
+    "release_sha256": "dd94a3765399e88ac54075103ca3b22aeea72f8ba9089e728318e43679473659"
+  },
+  {
+    "path": "scripts/plancraft_hindsight.py",
+    "research_sha256": "d5a89a6a5efb114084f4e6d99e046ceb24f74267facbe1d10a63aaacc0f359c2",
+    "release_sha256": "d5a89a6a5efb114084f4e6d99e046ceb24f74267facbe1d10a63aaacc0f359c2"
+  },
+  {
+    "path": "scripts/plancraft_recovery.py",
+    "research_sha256": "1e70e17f723f1a587ba144abeb2ddf727508e3234a7fd70ec91c74001dd642c7",
+    "release_sha256": "1e70e17f723f1a587ba144abeb2ddf727508e3234a7fd70ec91c74001dd642c7"
+  },
+  {
+    "path": "scripts/prepare_alfworld_action_contract.py",
+    "research_sha256": "c5ddfd07f870045e0d4c8a66a86670ef3c40b1b410c00422a8f3ec8011bc3db5",
+    "release_sha256": "c5ddfd07f870045e0d4c8a66a86670ef3c40b1b410c00422a8f3ec8011bc3db5"
+  },
+  {
+    "path": "scripts/prepare_alfworld_dialogue_hsl.py",
+    "research_sha256": "45d2ae67c0bfe8855a435656885c198fcbd81e8b0693fcde592bac79273b9b9c",
+    "release_sha256": "8f9e4512d49b4233bf081e6297b10f5959f4a5577eee9f15482c883761138a6c"
+  },
+  {
+    "path": "scripts/prepare_alfworld_eto_sft800.py",
+    "research_sha256": "f0f1dac2f4ad00ad78d75e9c478ed1a09f56050d10068172af66fcd6d25d93f0",
+    "release_sha256": "b79ee2bf57e65c0dff389edcf23ffc0059c7d1cb4d3b41bbdea05bde69a000c4"
+  },
+  {
+    "path": "scripts/prepare_babyai.py",
+    "research_sha256": "96bfd97b6d774fedecc38986e043662b25b9717de6626612ee9fff1665e3f93e",
+    "release_sha256": "29090f9a08eacead978be5da38ea5b2adf8f5644defeb5d6481e1e88fb900edb"
+  },
+  {
+    "path": "scripts/prepare_plancraft_hsl.py",
+    "research_sha256": "fce8968dd5a1fdf879bb8ea52a321e0242a4c49933a22bc3e8eced810aaf5274",
+    "release_sha256": "16d1b66d3275ac7d1e2cf848ce9a93ef43c21d2148a74be6a2ed6867108c8152"
+  },
+  {
+    "path": "scripts/run_babyai_evaluation.py",
+    "research_sha256": "9a32fbfe95bb64c9896bde2772e8dce58f52a443289cf2f346dc1f77664899f7",
+    "release_sha256": "7f5fb70d480869c4a3ee6dc799ddcd3d1fa5da584d02b9710d0e92280764f1ea"
+  },
+  {
+    "path": "scripts/run_plancraft_evaluation.py",
+    "research_sha256": "261028f6cc3d6190eddbbba9caa57b3cdc7bca4ff52ccec839b2d30b1c5f225d",
+    "release_sha256": "9a377993dea2261e98923363c657f261d50a938e487d9b4f01762e9015ab2a6b"
+  },
+  {
+    "path": "scripts/screen_babyai.py",
+    "research_sha256": "8450d0aa45f04e59a483e10cdf4899851158425480f2f06ea0cddc61c569db8d",
+    "release_sha256": "8450d0aa45f04e59a483e10cdf4899851158425480f2f06ea0cddc61c569db8d"
+  },
+  {
+    "path": "scripts/serve_alfworld_hsl.py",
+    "research_sha256": "d66989321f219c3f41ac21e63089d581a4b7a413b2c9365f53158b3891ba15d3",
+    "release_sha256": "d66989321f219c3f41ac21e63089d581a4b7a413b2c9365f53158b3891ba15d3"
+  },
+  {
+    "path": "scripts/textcraft_adapter.py",
+    "research_sha256": "60ce5e519739c8b19c663c8712a884970dc21cf8d9645935b6c6fcb224013979",
+    "release_sha256": "60ce5e519739c8b19c663c8712a884970dc21cf8d9645935b6c6fcb224013979"
+  },
+  {
+    "path": "scripts/textcraft_hindsight.py",
+    "research_sha256": "d8ef400af9e4e81303f7946da5f40972f88d88dcaa57a8f200406a4d24cf2826",
+    "release_sha256": "d8ef400af9e4e81303f7946da5f40972f88d88dcaa57a8f200406a4d24cf2826"
+  },
+  {
+    "path": "scripts/train_agent_data_agent.py",
+    "research_sha256": "98604482ff6413476112990196af0bd604041fa3d6c2d1020d3901c5ce777ac2",
+    "release_sha256": "98604482ff6413476112990196af0bd604041fa3d6c2d1020d3901c5ce777ac2"
+  },
+  {
+    "path": "scripts/train_agent_dynamix_transfer.py",
+    "research_sha256": "9ed8f640cc4cf197ba2ee3a9e474e4dab67fe852d3bb98dd5a77cd51d7d9d112",
+    "release_sha256": "9ed8f640cc4cf197ba2ee3a9e474e4dab67fe852d3bb98dd5a77cd51d7d9d112"
+  },
+  {
+    "path": "scripts/train_alfworld_batch_selection.py",
+    "research_sha256": "844b1b16b66547c28cb70f4c41daf9d682922c7ce74d29ad7e1c180faeae585b",
+    "release_sha256": "844b1b16b66547c28cb70f4c41daf9d682922c7ce74d29ad7e1c180faeae585b"
+  },
+  {
+    "path": "scripts/train_alfworld_data_agent.py",
+    "research_sha256": "6b8f3431a827f3f92be0084e68acbb9ff09761aed45342708b05413054aefc20",
+    "release_sha256": "6b8f3431a827f3f92be0084e68acbb9ff09761aed45342708b05413054aefc20"
+  },
+  {
+    "path": "scripts/train_alfworld_decision_coverage.py",
+    "research_sha256": "f5e85968ec04aa1b7d6f939a58893f39e5f1ed37843fc147df2fba108def3852",
+    "release_sha256": "f5e85968ec04aa1b7d6f939a58893f39e5f1ed37843fc147df2fba108def3852"
+  },
+  {
+    "path": "scripts/train_alfworld_direct_candidate.py",
+    "research_sha256": "0176c9bfe6a8efc7d76c915fae6fae1aaaae7c40706481e4f7bd13dc3441229a",
+    "release_sha256": "0176c9bfe6a8efc7d76c915fae6fae1aaaae7c40706481e4f7bd13dc3441229a"
+  },
+  {
+    "path": "scripts/train_alfworld_dynamixsft.py",
+    "research_sha256": "5cfe474a2af1a69c3aa414c1f19db4459ce1cbb9f1990c3a5392003f8eb39d54",
+    "release_sha256": "5cfe474a2af1a69c3aa414c1f19db4459ce1cbb9f1990c3a5392003f8eb39d54"
+  },
+  {
+    "path": "scripts/train_alfworld_hsl.py",
+    "research_sha256": "106ea6f19d507c31785df855fc0fe062747af2f3cc551c5cc607208ef92f2f6c",
+    "release_sha256": "106ea6f19d507c31785df855fc0fe062747af2f3cc551c5cc607208ef92f2f6c"
+  },
+  {
+    "path": "scripts/train_alfworld_hsl_plus_recovery.py",
+    "research_sha256": "3cfcedf96afb0265ff8a35091987323e9e61fa9f27443e34f6f5a47b827ca118",
+    "release_sha256": "3cfcedf96afb0265ff8a35091987323e9e61fa9f27443e34f6f5a47b827ca118"
+  },
+  {
+    "path": "scripts/train_alfworld_verified_recovery.py",
+    "research_sha256": "8cb1eaf3202ee4edb5b4c3ef374a3cc88a70941d0f5af4538779ed020a4dbad7",
+    "release_sha256": "8cb1eaf3202ee4edb5b4c3ef374a3cc88a70941d0f5af4538779ed020a4dbad7"
+  },
+  {
+    "path": "scripts/train_babyai_data_agent.py",
+    "research_sha256": "e9c15944470b176494dc6f218318740df6ca3f1e517782f417faf6d76df09593",
+    "release_sha256": "e9c15944470b176494dc6f218318740df6ca3f1e517782f417faf6d76df09593"
+  },
+  {
+    "path": "scripts/train_babyai_dchl.py",
+    "research_sha256": "d16040dd0466276a10b89a8db090d1318665d2223aff1ca6286f8a64ce5a81ab",
+    "release_sha256": "d16040dd0466276a10b89a8db090d1318665d2223aff1ca6286f8a64ce5a81ab"
+  },
+  {
+    "path": "scripts/train_babyai_dynamixsft.py",
+    "research_sha256": "f476675f8134bb9e713615084b548a90de3cd669db061faeef0fcfdbcbe9b9aa",
+    "release_sha256": "f476675f8134bb9e713615084b548a90de3cd669db061faeef0fcfdbcbe9b9aa"
+  },
+  {
+    "path": "scripts/train_babyai_hsl.py",
+    "research_sha256": "cb393a60331f526d6527cb33d64f8015c7d02444637af5908b3af530d4b0dc56",
+    "release_sha256": "cb393a60331f526d6527cb33d64f8015c7d02444637af5908b3af530d4b0dc56"
+  },
+  {
+    "path": "scripts/train_babyai_sft.py",
+    "research_sha256": "4e48c04f2b9683483f323b0bb865778110d1345c274c46073a765a16034d3826",
+    "release_sha256": "4e48c04f2b9683483f323b0bb865778110d1345c274c46073a765a16034d3826"
+  },
+  {
+    "path": "scripts/train_plancraft_continuation.py",
+    "research_sha256": "2f272d278b78be45962ba6ad6c54320891d1ae903211e84a2f4008d509c682a9",
+    "release_sha256": "2f272d278b78be45962ba6ad6c54320891d1ae903211e84a2f4008d509c682a9"
+  },
+  {
+    "path": "scripts/train_plancraft_data_agent.py",
+    "research_sha256": "13d91e248ac3ab1a784924dbef99b91b1ce9d191e1a4f2716b074165d9552fc1",
+    "release_sha256": "13d91e248ac3ab1a784924dbef99b91b1ce9d191e1a4f2716b074165d9552fc1"
+  },
+  {
+    "path": "scripts/train_plancraft_decision_coverage.py",
+    "research_sha256": "0c3234eb7bb631bff574157f749bd2b463df26500e782ce43cbc082b44a010da",
+    "release_sha256": "0c3234eb7bb631bff574157f749bd2b463df26500e782ce43cbc082b44a010da"
+  },
+  {
+    "path": "scripts/train_plancraft_decision_coverage_required_actions.py",
+    "research_sha256": "4106466f152112edc38a0a8b5c9b7586c8f2500e226a390f1f91a9e612fef7cb",
+    "release_sha256": "4106466f152112edc38a0a8b5c9b7586c8f2500e226a390f1f91a9e612fef7cb"
+  },
+  {
+    "path": "scripts/train_plancraft_decision_coverage_structural_feedback.py",
+    "research_sha256": "4939b4b05aab07a1b63ace4c6cd536e245de25ed8e792e20b71ff144344bd5dc",
+    "release_sha256": "4939b4b05aab07a1b63ace4c6cd536e245de25ed8e792e20b71ff144344bd5dc"
+  },
+  {
+    "path": "scripts/train_plancraft_dynamixsft.py",
+    "research_sha256": "e26eb017d6dbc2d0889f11d827d7cda3ac40439fb56af63a25a97f76db65cef0",
+    "release_sha256": "e26eb017d6dbc2d0889f11d827d7cda3ac40439fb56af63a25a97f76db65cef0"
+  },
+  {
+    "path": "scripts/train_plancraft_hsl.py",
+    "research_sha256": "4dc037a9b1e86cf9ea5dfdcc90fd1f35ae4280283b9efa50730ae64ee6e9ca86",
+    "release_sha256": "4dc037a9b1e86cf9ea5dfdcc90fd1f35ae4280283b9efa50730ae64ee6e9ca86"
+  },
+  {
+    "path": "scripts/train_textcraft_dchl.py",
+    "research_sha256": "d4a9265ff8d9effafc32f81f560535c9e8e3e26d513be7e9b63ea9f2338f62c9",
+    "release_sha256": "d4a9265ff8d9effafc32f81f560535c9e8e3e26d513be7e9b63ea9f2338f62c9"
+  },
+  {
+    "path": "scripts/train_textcraft_hsl.py",
+    "research_sha256": "02457fff676c09a9b6e7c771571c01a994507242fd430edff144b5f788acab47",
+    "release_sha256": "02457fff676c09a9b6e7c771571c01a994507242fd430edff144b5f788acab47"
+  },
+  {
+    "path": "scripts/train_textcraft_sft.py",
+    "research_sha256": "252c0f5a9a47e2c78386570d0e03b4156540eecfad6f62f5ce73a7b33db02911",
+    "release_sha256": "252c0f5a9a47e2c78386570d0e03b4156540eecfad6f62f5ce73a7b33db02911"
+  }
+]

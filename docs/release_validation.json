@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "cpu_tests": 17,
+  "online_launch_plans": 24,
+  "configurations": 6,
+  "python_compile": true,
+  "shell_syntax": true,
+  "verl_patch_exact_reconstruction": true,
+  "training_rerun": false,
+  "verification_scope": "CPU invariants and release packaging, not fresh GPU score reproduction"
+}
